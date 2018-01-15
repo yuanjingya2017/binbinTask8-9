@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .root,.node-1,.node-2,.node-3,.node-4{
+            border:1px solid black;
+            padding: 5px;
+            margin: 5px;
+            float: left;
+            box-sizing: content-box;
+        }
+        .root{
+            width: 800px;
+            height: 600px;
+        }
+        .node-1{
+            width: 700px;
+            height: 250px;
+        }
+        .node-2{
+            width: 320px;
+            height: 200px;
+        }
+        .node-3{
+            width: 120px;
+            height: 150px;
+        }
+        .node-4{
+            width: 60px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="root">root
+    <div class="node-1">1
+        <div class="node-2">2
+            <div class="node-3">3
+                <div class="node-4">4</div>
+                <div class="node-4">4</div>
+            </div>
+            <div class="node-3">3
+                <div class="node-4">4</div>
+                <div class="node-4">4</div>
+            </div>
+        </div>
+        <div class="node-2">2
+            <div class="node-3">3
+                <div class="node-4">4</div>
+                <div class="node-4">4</div>
+            </div>
+            <div class="node-3">3
+                <div class="node-4">4</div>
+                <div class="node-4">4</div>
+            </div>
+        </div>
+    </div>
+    <div class="node-1">1
+        <div class="node-2">2
+            <div class="node-3">3
+                <div class="node-4">4</div>
+                <div class="node-4">4</div>
+            </div>
+            <div class="node-3">3
+                <div class="node-4">4</div>
+                <div class="node-4">4</div>
+            </div>
+        </div>
+        <div class="node-2">2
+            <div class="node-3">3
+                <div class="node-4">4</div>
+                <div class="node-4">4</div>
+            </div>
+            <div class="node-3">3
+                <div class="node-4">4</div>
+                <div class="node-4">4</div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="button" value="前序">
+<input type="button" value="广度遍历">
+<input type="button" value="后序">
+<script src="task8.js"></script>
+</body>
+</html>
