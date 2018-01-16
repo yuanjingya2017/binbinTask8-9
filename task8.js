@@ -1,26 +1,32 @@
 var preOrder = document.getElementsByTagName('input')[0];
 var widthOrder = document.getElementsByTagName('input')[1];
 var lastOrder = document.getElementsByTagName('input')[2];
+var del = document.getElementsByTagName('input')[3];
+var add = document.getElementsByTagName('input')[4];
+var text = document.getElementsByTagName('input')[5];
 var root = document.getElementsByClassName('root')[0];
 var treeNodes=[];
-var arrdeep = 0;
+var arrdeep = [];
+arrdeep.push(1);
 preOrder.onclick = function () {
     treeNodes=[];
     pre(root);
     changeColor();
     console.log(treeNodes)
 }
-widthOrder.onclick = function () {
-    treeNodes=[];
-    width(root,arrdeep,0);
-    console.log(treeNodes)
-}
+// widthOrder.onclick = function () {
+//     treeNodes=[];
+//     width(root,arrdeep,0);
+//     console.log(treeNodes)
+// }
+
 lastOrder.onclick = function () {
     treeNodes=[];
     last(root);
     changeColor();
     console.log(treeNodes)
 }
+
 function pre(r) {
     if(r!=null){
         treeNodes.push(r);
@@ -34,20 +40,54 @@ function pre(r) {
         }
     }
 }
-function width(r) {
+
+function removePre(r,item) {
     if(r!=null){
-        treeNodes.push(r);
+        if(r==item){
+            r.parentNode.removeChild(r);
+            return;
+        }
         var child = r.childNodes;
         if(child.length>0){
-            arrdeep++;
             for(var i=0;i<child.length;i++){
                 if(child[i].nodeName=='DIV'){
-                    width(child[i]);
+                    removePre(child[i],item);
                 }
             }
         }
     }
 }
+function addPre(r,item,text) {
+    if(r!=null){
+        if(r==item){
+            console.log(r,item,text);
+            var dom = document.createElement('div');
+            dom.className = text;
+            dom.innerHTML = text;
+            r.appendChild(dom);
+            return;
+        }
+        var child = r.childNodes;
+        if(child.length>0){
+            for(var i=0;i<child.length;i++){
+                if(child[i].nodeName=='DIV'){
+                    addPre(child[i],item,text);
+                }
+            }
+        }
+    }
+}
+
+// function width(r,arrdeep) {
+//     var _this = this;
+//     if(r!=null){
+//         var childlen = r.childNodes.length;
+//         arrdeep.push(childlen);
+//
+//     }
+// }
+
+
 function last(r) {
     if(r!=null){
         var child = r.childNodes;
@@ -61,6 +101,7 @@ function last(r) {
         treeNodes.push(r);
     }
 }
+
 function changeColor() {
     var i=0;
     treeNodes[i].style.backgroundColor = '#F34949';
@@ -84,6 +125,21 @@ function changeColor() {
     },300);
 
 }
+
 function resetbgColor(obj) {
     obj.style.backgroundColor = 'white';
+}
+pre(root);
+var preToDele = [];
+root.addEventListener('click',function (e) {
+    preToDele = [];
+    e.target.style.backgroundColor = 'red';
+    preToDele.push(e.target);
+});
+
+del.onclick = function () {
+    removePre(root,preToDele[0]);
+}
+add.onclick = function () {
+    addPre(root,preToDele[0],text.value);
 }
